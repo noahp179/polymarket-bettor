@@ -1,17 +1,17 @@
 # TournamentBet
 
-TournamentBet is an MVP-ready React + TypeScript frontend for a sports betting tournament SaaS platform. This milestone intentionally keeps backend services mocked while providing production-oriented boundaries for Supabase Auth/PostgreSQL/Realtime/Storage, Stripe Connect, sports data providers, compliance controls, and role-based dashboards.
+TournamentBet is an MVP-ready React + TypeScript application for a sports betting tournament SaaS platform. It now includes a Supabase schema migration, Supabase REST data layer, sportsbook-style frontend, and fallback mock data while Stripe Connect, sports provider APIs, and production Auth are finalized.
 
 ## What is now MVP-ready
 
-- **Product shell:** Responsive landing page, navigation, dark/light mode, role preview, error boundary, loading/empty states, and environment integration banner.
-- **Tournament discovery:** Search, sport filtering, public/private labels, invite URL previews, compliance flags, participant counts, entry fees, gross pot, 5% platform fee, and net prize pool.
+- **Product shell:** Professional sportsbook-style landing page, compact sport navigation, live market board, ticket/entry preview, dark/light mode, role preview, error boundary, loading/empty states, and environment integration banner.
+- **Tournament discovery:** Betting lobby cards with search, sport filtering, public/private labels, invite URL previews, compliance flags, field-fill progress, entry fees, gross pot, 5% platform fee, and net prize pool.
 - **Tournament creation:** Validated create modal for basic info, sport, tournament type, visibility, entry settings, min/max participants, timing, rules, prize math, and social sharing actions.
 - **Participant dashboard:** Wallet summary, transaction states, referral stats, notifications, and realtime-style leaderboard contract.
 - **Organizer/admin surfaces:** Admin controls, disabled-state RBAC preview, payment ledger, platform fee reporting, dispute/fraud actions, and CSV export affordance.
 - **Sports data surface:** Live score, schedule, odds, and provider adapter placeholders for The Odds API, ESPN/Sportradar, or SportsDataIO.
 - **Compliance architecture:** Age verification, geo-restrictions, responsible gaming, KYC hooks, audit logs, rules engine, and legal page placeholders are modeled as configurable UI modules.
-- **Frontend integration seams:** Mock API and typed domain models can be replaced with Supabase queries, serverless functions, or a Node API without redesigning the UI.
+- **Supabase integration:** The frontend attempts Supabase REST reads/writes first and falls back to mock data until the migration is applied.
 
 ## Project structure
 
@@ -40,15 +40,28 @@ npm run build
 
 > Package installation requires npm registry access. In the current execution environment, registry requests returned HTTP 403, so install/build verification could not complete here.
 
+## Supabase backend setup
+
+The backend migration is in `supabase/migrations/20260603220000_initial_tournamentbet_schema.sql`. It creates the TournamentBet tables, seed data, RLS policies, storage buckets, `tournament_lobby` view, and prize pool function. More details are in `docs/backend.md`.
+
+Apply it in the Supabase SQL editor or with the CLI:
+
+```bash
+supabase login
+supabase link --project-ref remheocuxppurvkwkfoe
+supabase db push
+```
+
+The frontend data layer in `src/lib/supabaseRest.ts` uses the configured Supabase project first, then falls back to mock data if the schema is not applied yet.
+
 ## Production launch next steps
 
 ### 1. Supabase foundation
 
-- Create Supabase project and configure `.env.local` from `.env.example`.
-- Add Supabase Auth for email/password and Google OAuth.
-- Create Postgres tables for profiles, tournaments, participants, picks, payments, payouts, invitations, notifications, disputes, reports, audit logs, sports events, wallets, and ledger entries.
-- Enable RLS policies for Platform Admin, Tournament Organizer, and Participant roles.
-- Add Supabase Storage buckets for avatars, tournament covers, receipts, and dispute evidence.
+- Apply the included Supabase migration to create the database foundation.
+- Enable Supabase Auth for email/password and Google OAuth.
+- Replace MVP anonymous policies with authenticated RLS policies for Platform Admin, Tournament Organizer, and Participant roles.
+- Add server-side functions for Stripe webhooks, payouts, KYC, and sports-data ingestion.
 
 ### 2. Stripe Connect and wallet ledger
 
