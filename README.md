@@ -4,8 +4,8 @@ TournamentBet is an MVP-ready React + TypeScript frontend for a sports betting t
 
 ## What is now MVP-ready
 
-- **Product shell:** Professional sportsbook-style landing page, compact sport navigation, live market board, ticket/entry preview, dark/light mode, role preview, error boundary, loading/empty states, and environment integration banner.
-- **Tournament discovery:** Betting lobby cards with search, sport filtering, public/private labels, invite URL previews, compliance flags, field-fill progress, entry fees, gross pot, 5% platform fee, and net prize pool.
+- **Product shell:** Responsive landing page, navigation, dark/light mode, role preview, error boundary, loading/empty states, and environment integration banner.
+- **Tournament discovery:** Search, sport filtering, public/private labels, invite URL previews, compliance flags, participant counts, entry fees, gross pot, 5% platform fee, and net prize pool.
 - **Tournament creation:** Validated create modal for basic info, sport, tournament type, visibility, entry settings, min/max participants, timing, rules, prize math, and social sharing actions.
 - **Participant dashboard:** Wallet summary, transaction states, referral stats, notifications, and realtime-style leaderboard contract.
 - **Organizer/admin surfaces:** Admin controls, disabled-state RBAC preview, payment ledger, platform fee reporting, dispute/fraud actions, and CSV export affordance.
