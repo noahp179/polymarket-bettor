@@ -1,5 +1,5 @@
 {
-  "name": "tournamentbet",
+  "name": "longshots",
   "version": "0.2.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,9 @@
     "vite": "5.4.11",
     "typescript": "5.6.3",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-router-dom": "7.4.0",
+    "zustand": "5.0.3"
   },
   "devDependencies": {
     "@types/node": "22.10.2",

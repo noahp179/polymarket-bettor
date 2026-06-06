@@ -3,6 +3,9 @@ export type Sport = 'NFL' | 'NBA' | 'MLB' | 'NHL' | 'Soccer' | 'MMA' | 'Custom';
 export type TournamentType = 'Pick’em' | 'Survivor Pool' | 'Confidence Pool' | 'Spread Betting' | 'Moneyline' | 'Custom';
 export type TournamentStatus = 'Registration' | 'Live' | 'Completed' | 'Suspended';
 export type CurrencyCode = 'USD' | 'CAD' | 'EUR';
+export type PickStatus = 'Pending' | 'Won' | 'Lost' | 'Pushed';
+export type ParticipantStatus = 'Active' | 'Eliminated';
+export type DisputeStatus = 'Open' | 'Under Review' | 'Resolved';
 
 export interface PrizeDistribution {
   label: string;
@@ -31,6 +34,57 @@ export interface Tournament {
   complianceRegions: string[];
   ageVerifiedRequired: boolean;
   geoRestricted: boolean;
+  rules: string;
+  organizerId: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  role: Role;
+  balance: number;
+  createdAt: string;
+}
+
+export interface Participant {
+  id: string;
+  tournamentId: string;
+  userId: string;
+  username: string;
+  joinedAt: string;
+  status: ParticipantStatus;
+}
+
+export interface Pick {
+  id: string;
+  tournamentId: string;
+  userId: string;
+  event: string;
+  selection: string;
+  odds: string;
+  stake: number;
+  status: PickStatus;
+  createdAt: string;
+}
+
+export interface ForumPost {
+  id: string;
+  tournamentId: string;
+  userId: string;
+  username: string;
+  content: string;
+  createdAt: string;
+}
+
+export interface Dispute {
+  id: string;
+  tournamentId: string;
+  userId: string;
+  username: string;
+  reason: string;
+  status: DisputeStatus;
+  createdAt: string;
 }
 
 export interface LeaderboardEntry {
@@ -51,6 +105,7 @@ export interface Transaction {
   status: 'Succeeded' | 'Pending' | 'Failed' | 'Scheduled';
   stripeId: string;
   date: string;
+  userId: string;
 }
 
 export interface NotificationItem {

@@ -81,12 +81,14 @@ function mapTournament(row: JsonRecord): Tournament {
     startDate: asString(row.start_date),
     endDate: asString(row.end_date),
     status: asString(row.status, 'Registration') as Tournament['status'],
-    organizer: asString(row.organizer_name, 'TournamentBet Organizer'),
+    organizer: asString(row.organizer_name, 'Longshots Organizer'),
     cover: asString(row.cover, 'linear-gradient(135deg, #1493ff, #07111f 65%)'),
     prizeDistribution: mapPrizeDistribution(row.prize_distribution),
     complianceRegions: Array.isArray(row.compliance_regions) ? row.compliance_regions.map((item) => String(item)) : ['Pending compliance review'],
     ageVerifiedRequired: asBoolean(row.age_verified_required, true),
     geoRestricted: asBoolean(row.geo_restricted, true),
+    rules: asString(row.rules, ''),
+    organizerId: asString(row.organizer_id, ''),
   };
 }
 
@@ -111,6 +113,7 @@ function mapTransaction(row: JsonRecord): Transaction {
     stripeId: asString(row.stripe_id, 'pending'),
     status: asString(row.status, 'Pending') as Transaction['status'],
     date: asString(row.created_at).slice(0, 10),
+    userId: asString(row.user_id, ''),
   };
 }
 

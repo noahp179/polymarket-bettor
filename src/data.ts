@@ -2,9 +2,9 @@ import type { LeaderboardEntry, NotificationItem, SportsEvent, Tournament, Trans
 
 export const PLATFORM_FEE_RATE = 0.05;
 
-export const tournaments: Tournament[] = [
+export const initialTournaments: Tournament[] = [
   {
-    id: 'tb-nfl-001',
+    id: 'ls-nfl-001',
     name: 'Sunday Gridiron High Roller',
     description: 'Weekly NFL spread contest with automated scoring, transparent prize math, and live leaderboard updates.',
     sport: 'NFL',
@@ -20,6 +20,7 @@ export const tournaments: Tournament[] = [
     registrationDeadline: '2026-09-12',
     status: 'Registration',
     organizer: 'Gridiron Labs',
+    organizerId: 'usr-org-001',
     cover: 'linear-gradient(135deg, #10b981, #0f172a 60%)',
     prizeDistribution: [
       { label: '1st', percent: 60 },
@@ -29,9 +30,10 @@ export const tournaments: Tournament[] = [
     complianceRegions: ['US-CO', 'US-NJ', 'US-TN'],
     ageVerifiedRequired: true,
     geoRestricted: true,
+    rules: 'Picks lock before kickoff. Standings are scored by profit/loss, then points, then earliest submission.',
   },
   {
-    id: 'tb-nba-002',
+    id: 'ls-nba-002',
     name: 'Courtside Confidence Cup',
     description: 'Rank NBA picks by confidence points and climb a real-time standings board as games settle.',
     sport: 'NBA',
@@ -47,14 +49,16 @@ export const tournaments: Tournament[] = [
     registrationDeadline: '2026-10-20',
     status: 'Registration',
     organizer: 'Downtown Hoops',
+    organizerId: 'usr-org-002',
     cover: 'linear-gradient(135deg, #f97316, #312e81 70%)',
     prizeDistribution: [{ label: 'Winner', percent: 100 }],
     complianceRegions: ['Configured per invite'],
     ageVerifiedRequired: true,
     geoRestricted: false,
+    rules: 'Submit confidence rankings for each game. Highest total confidence points wins.',
   },
   {
-    id: 'tb-mlb-003',
+    id: 'ls-mlb-003',
     name: 'Diamond Moneyline Sprint',
     description: 'MLB moneyline competition with ROI-first rankings, referrals, and payout automation hooks.',
     sport: 'MLB',
@@ -70,6 +74,7 @@ export const tournaments: Tournament[] = [
     registrationDeadline: '2026-06-11',
     status: 'Live',
     organizer: 'Analytics Edge',
+    organizerId: 'usr-org-003',
     cover: 'linear-gradient(135deg, #38bdf8, #1e293b 70%)',
     prizeDistribution: [
       { label: '1st', percent: 50 },
@@ -79,6 +84,7 @@ export const tournaments: Tournament[] = [
     complianceRegions: ['US-AZ', 'US-IL', 'US-VA'],
     ageVerifiedRequired: true,
     geoRestricted: true,
+    rules: 'Pick MLB moneylines. ROI is king. Ties broken by earliest submission.',
   },
 ];
 
@@ -91,10 +97,10 @@ export const leaderboard: LeaderboardEntry[] = [
 ];
 
 export const transactions: Transaction[] = [
-  { id: 'pay_001', kind: 'Entry Fee', tournament: 'Sunday Gridiron High Roller', amount: 50, platformFee: 2.5, status: 'Succeeded', stripeId: 'pi_mock_91Ka', date: '2026-06-01' },
-  { id: 'fee_001', kind: 'Platform Fee', tournament: 'Diamond Moneyline Sprint', amount: 148.5, platformFee: 148.5, status: 'Succeeded', stripeId: 'txn_mock_platform', date: '2026-06-02' },
-  { id: 'po_001', kind: 'Payout', tournament: 'Spring Survivor Pool', amount: 940, platformFee: 0, status: 'Scheduled', stripeId: 'po_mock_488', date: '2026-06-05' },
-  { id: 'wd_001', kind: 'Withdrawal', tournament: 'Wallet', amount: 250, platformFee: 0, status: 'Pending', stripeId: 'tr_mock_31p', date: '2026-06-03' },
+  { id: 'pay_001', kind: 'Entry Fee', tournament: 'Sunday Gridiron High Roller', amount: 50, platformFee: 2.5, status: 'Succeeded', stripeId: 'pi_mock_91Ka', date: '2026-06-01', userId: 'usr-003' },
+  { id: 'fee_001', kind: 'Platform Fee', tournament: 'Diamond Moneyline Sprint', amount: 148.5, platformFee: 148.5, status: 'Succeeded', stripeId: 'txn_mock_platform', date: '2026-06-02', userId: 'usr-002' },
+  { id: 'po_001', kind: 'Payout', tournament: 'Spring Survivor Pool', amount: 940, platformFee: 0, status: 'Scheduled', stripeId: 'po_mock_488', date: '2026-06-05', userId: 'usr-003' },
+  { id: 'wd_001', kind: 'Withdrawal', tournament: 'Wallet', amount: 250, platformFee: 0, status: 'Pending', stripeId: 'tr_mock_31p', date: '2026-06-03', userId: 'usr-003' },
 ];
 
 export const notifications: NotificationItem[] = [

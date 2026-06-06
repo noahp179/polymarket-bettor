@@ -11,7 +11,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error('TournamentBet UI error', { error, info });
+    console.error('Longshots UI error', { error, info });
   }
 
   render() {

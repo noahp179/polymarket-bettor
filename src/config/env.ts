@@ -1,7 +1,7 @@
 const rawFeeRate = Number(import.meta.env.VITE_PLATFORM_FEE_RATE ?? '0.05');
 
 export const env = {
-  appName: import.meta.env.VITE_APP_NAME ?? 'TournamentBet',
+  appName: import.meta.env.VITE_APP_NAME ?? 'Longshots',
   platformFeeRate: Number.isFinite(rawFeeRate) ? rawFeeRate : 0.05,
   stripePublishableKey: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? '',
   supabaseUrl: import.meta.env.VITE_SUPABASE_URL ?? 'https://remheocuxppurvkwkfoe.supabase.co',
